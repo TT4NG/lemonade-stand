@@ -23,7 +23,8 @@ class Game:
         self.old = 0
         self.jogger = 0
         self.thirst = 0
-        self.day = 3
+        self.day = 0
+        self.days = 1
         self.increase = float(0)
         self.thirstold = 6
         self.thirstnorm = 5
@@ -32,10 +33,11 @@ class Game:
 
 
     def startText(self):
-        self.day = 3
+        self.day = 0
         print("Welcome to Lemonade Stand!")
         print("The game is simple, test various lemonade recipes while staying within budget and try to make a profit")
-        print("You have a total of 3 days to make as much profit as you can, best of Luck")
+        self.daycounter()
+        print("You have a total of ", self.day, " days to make as much profit as you can, best of Luck")
         self.cash()
         self.player1 = self.getplayer()
         print(self.player1.name, "your mother has given you", self.account, "for the summer good luck on your stand")
@@ -64,6 +66,7 @@ class Game:
             self.purchase()
 
             self.day -= 1
+            self.days += 1
             self.ice = 0
 
             self.nextText()
@@ -180,6 +183,27 @@ class Game:
         print("you made: ", self.increase1 + self.increase2 + self.increase3)
         print("On to the next day!")
         self.thirst = 0
+
+    def daycounter(self):
+        print("As the amount of time progresses goods will become more expensive to purchase")
+        print("how many days would you like to play for: ")
+        print("1 play for 3 days")
+        print("2 play for 5 days")
+        print("3 play for 7 days")
+        d = input("choose an option: ")
+        print("")
+        try:
+            day = int(d)
+            if day == 1:
+                self.day = 3
+            elif day == 2:
+                self.day = 5
+            elif day == 3:
+                self.day = 7
+        except ValueError:
+            print("invalid choice")
+            print("")
+            self.daycounter()
 
     def restart(self):
         while self.account > self.highscore:
