@@ -30,6 +30,7 @@ class Game:
         self.thirstnorm = 5
         self.thirstjogger = 3
         self.highscore = 0
+        self.highday = 0
 
 
     def startText(self):
@@ -210,7 +211,7 @@ class Game:
             print("new high score")
             self.highscore = self.account
             self.playerhigh = self.player1.name
-
+            self.highday = self.day
         answer = input("would you like to play again? Y/N: ")
         print(answer)
         if answer.lower() == "y":

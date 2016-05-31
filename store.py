@@ -6,13 +6,14 @@ class Store:
         self.cups = 0
 
     def storePurchase(self):
+        print("Keep in mind this is Venezuela after the revolution and our goods will be numbered by the day...")
         print("")
         print("Current account total is", self.account)
         print("What would you like to buy today?")
-        print("1 for lemons at $", (0.75 * self.days), "  currently ", self.lemons)
-        print("2 for sugar at $", (2.50 * self.days), "  currently ", self.sugar)
-        print("3 for ice at $", (4.00 * self.days), "  currently ", self.ice)
-        print("4 for cups at $", (1.50 * self.days), "  currently ", self.cups)
+        print("1 for lemons at $", (0.35 * self.days), "  currently ", self.lemons)
+        print("2 for sugar at $", (1.50 * self.days), "  currently ", self.sugar)
+        print("3 for ice at $", (2.00 * self.days), "  currently ", self.ice)
+        print("4 for cups at $", (0.50 * self.days), "  currently ", self.cups)
         print("5 if finished shopping")
         choice = input("enter a selection: ")
         if choice == '1':
@@ -33,10 +34,10 @@ class Store:
         try:
             lem = input("how many lemons would you like?")
             lem = int(lem)
-            self.lemons += lem * self.days
-            self.account -= 0.75 * lem * self.days
+            self.lemons += lem
+            self.account -= 0.35 * lem * self.days
             if self.account < 0:
-                self.account += 0.75 * lem
+                self.account += 0.35 * lem
                 print("Not enough cash!")
             return Store.storePurchase(self)
         except ValueError:
@@ -47,9 +48,9 @@ class Store:
             sug = input("how much sugar would you like?")
             sug = int(sug)
             self.sugar += sug
-            self.account -= 2.50 * sug * self.days
+            self.account -= 1.50 * sug * self.days
             if self.account < 0:
-                self.account += 2.50 * sug * self.days
+                self.account += 1.50 * sug * self.days
                 print("Not enough cash!")
             return Store.storePurchase(self)
         except ValueError:
@@ -60,9 +61,9 @@ class Store:
             i = input("how much ice would you like?")
             i = int(i)
             self.ice += i
-            self.account -= 4.00 * i * self.days
+            self.account -= 2.00 * i * self.days
             if self.account < 0:
-                self.account += 4.00 * i * self.days
+                self.account += 2.00 * i * self.days
                 print("Not enough cash!")
             return Store.storePurchase(self)
         except ValueError:
@@ -73,9 +74,9 @@ class Store:
             c = input("how many cups would you like to buy (increments of 20)?")
             c = int(c)
             self.cups += c*20
-            self.account -= 1.50 * c * self.days
+            self.account -= 0.50 * c * self.days
             if self.account < 0:
-                self.account += 1.50 * c * self.days
+                self.account += 0.50 * c * self.days
                 print("Not enough cash!")
             return Store.storePurchase(self)
         except ValueError:
